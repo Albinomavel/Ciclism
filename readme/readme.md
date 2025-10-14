@@ -1,0 +1,1 @@
+Como extensão do nosso projeto decidimos fazer tambem um site, isso servirá para dar profundidade ao nosso TCC além de também aprendermos programando em CSS e HTML, assim como o chatbot
