@@ -3,37 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ofertas</title>
+  <title>Ciclism</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
 </head>
 <body>
-<header class="test">
-    <div class="teste">
-    <div id="barraPesquisa">
-    <input type="text" id="campoPesquisa" placeholder="🔍 Buscar...">
-     <button id="botaoPesquisa">Pesquisar</button>
-     </div>
+<header class="site-header">
+  <div class="container">
+    <div id="barraPesquisa" role="search" aria-label="Barra de pesquisa">
+      <input type="search" id="campoPesquisa" placeholder="Buscar..." aria-label="Buscar produtos">
+      <button id="botaoPesquisa">Pesquisar</button>
     </div>
+  </div>
 </header>
 
 <section class="ofertas">
-  <div class="cabecalho">
-    <h2>Ofertas</h2>
-    <a href="#">Mostrar todas as ofertas</a>
-  </div>
-  <div class="grid-produtos">
+  <div class="container">
+    <div class="cabecalho">
+      <h2>Ofertas</h2>
+      <a href="#">Mostrar todas as ofertas</a>
+    </div>
+
+    <div class="carrossel-container">
+      <button class="nav-btn prev-btn" aria-label="Ver produtos anteriores">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div class="rolagem">
     <div class="produto">
       <img src="../imagens/quadro1.jpg" alt="quadro de bicicleta">
       <p class="titulo"> Quadro MTB KWR em alumínio 6061</p>
       <p class="preco">R$ <span>350,00</span>
       <p class="parcelas">5x R$ 18,81 sem juros</p>
       <p class="frete">Frete ⚡ grátis</p>
-    </div>
+  </div>
 
     <div class="produto">
       <img src="../imagens/quadro2.jpg" alt="quadro de bicicleta">
       <p class="titulo"> Quadro Speed 3R1 em alumínio 6061</p>
-      <!--<p class="preco-antigo">R$ 450,00</p>-->
       <p class="preco">R$ <span>450,00</span> 
       <p class="parcelas">12x R$ 31,30</p>
       <p class="frete">Frete ⚡ grátis</p>
@@ -54,8 +64,89 @@
       <p class="preco">R$ <span>100,00</span> 
       <p class="frete">Frete ⚡ grátis</p>
     </div>
+
+    <div class="produto">
+      <img src="../imagens/luva.jpg" alt="Produto 4" class="inline">
+      <p class="titulo">Luvas de Ciclismo ROAD500 Van Rysel</p>
+      <p class="preco">R$ <span>30,00</span> 
+      <p class="frete">Frete ⚡ grátis</p>
+    </div>
+
+    <div class="produto">
+      <img src="../imagens/lanterna.jpg" alt="Produto 4" class="inline">
+      <p class="titulo">Luz Dianteira WestBiking, bateria de 1500mAh</p>
+      <p class="preco">R$ <span>130,00</span> 
+      <p class="frete">Frete ⚡ grátis</p>
+    </div>
+
+    <div class="produto">
+      <img src="../imagens/camiseta.jpg" alt="Produto 4" class="inline">
+      <p class="titulo">Camisa Ciclismo Pirelim Pro Team</p>
+      <p class="preco">R$ <span>100,00</span> 
+      <p class="frete">Frete ⚡ grátis</p>
+    </div>
+
+    <div class="produto">
+      <img src="../imagens/oculosprotecao.jpg" alt="Produto 4" class="inline">
+      <p class="titulo">Oculos RB-SP 176</p>
+      <p class="preco">R$ <span>70,00</span> 
+      <p class="frete">Frete ⚡ grátis</p>
+    </div>
+
+    <div class="produto">
+      <img src="../imagens/shorts.jpg" alt="Produto 4" class="inline">
+      <p class="titulo">Bermuda Ciclismo Pirelim Speed</p>
+      <p class="preco">R$ <span>90,00</span> 
+      <p class="frete">Frete ⚡ grátis</p>
+    </div>
+
+      </div>
+
+      <button class="nav-btn next-btn" aria-label="Ver próximos produtos">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
   </div>
 </section>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const rolagem = document.querySelector('.rolagem');
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  
+  // Quantidade a rolar (largura do produto + gap)
+  const scrollAmount = 316; // 300px do produto + 16px do gap
+  
+  // Atualiza estado dos botões
+  function updateNavButtons() {
+    prevBtn.disabled = rolagem.scrollLeft <= 0;
+    nextBtn.disabled = rolagem.scrollLeft >= (rolagem.scrollWidth - rolagem.clientWidth);
+  }
+  
+  // Handlers de clique
+  prevBtn.addEventListener('click', () => {
+    rolagem.scrollBy({
+      left: -scrollAmount,
+      behavior: 'smooth'
+    });
+  });
+  
+  nextBtn.addEventListener('click', () => {
+    rolagem.scrollBy({
+      left: scrollAmount,
+      behavior: 'smooth'
+    });
+  });
+  
+  // Atualiza botões quando a rolagem acontece
+  rolagem.addEventListener('scroll', updateNavButtons);
+  
+  // Configuração inicial
+  updateNavButtons();
+});
+</script>
 </body>
 </html>
